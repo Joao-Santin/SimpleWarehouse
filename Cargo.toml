@@ -1,0 +1,11 @@
+[package]
+name = "simple_warehouse"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+iced = {version="0.13.1", features=["lazy"]}
+iced_aw = "0.11.0"
+dotenv = "0.15.0"
+mongodb = "3.2.3"
