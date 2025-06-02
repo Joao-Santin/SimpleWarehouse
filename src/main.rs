@@ -1,8 +1,7 @@
 use iced::{Element, widget::{row, column, button, container, text}};
 
-pub enum Company{
-    RSJ,
-    BSR
+pub struct Company{
+    name: String, 
 }
 
 pub enum Screen{
@@ -25,19 +24,16 @@ pub struct WarehouseApp{
 impl Default for WarehouseApp{
     fn default() -> Self{
         Self{
-            sel_company: Company::RSJ,
+            sel_company: Company{name:"unselected".to_string()},
             sel_screen: Screen::HubScreen,
         }
     }
 } 
 impl WarehouseApp{
     fn title(&self) -> String{
-        let comp_title: String = match self.sel_company{
-            Company::RSJ => "RSJ".to_string(),
-            Company::BSR => "BSR".to_string()
-        };
-        format!("Simple!Warehouse: {}",comp_title )
-    }
+        let comp_title = self.sel_company.name;
+        format!("Simple!Warehouse: {}",comp_title)
+
     fn update(&mut self, event: Message) {
         match event{
             Message::ScreenMessage => println!("ScreenMessage"),
