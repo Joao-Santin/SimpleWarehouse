@@ -1,4 +1,4 @@
-use iced::{Element, widget::{row, column, button, container, text}};
+use iced::{Element, Task, widget::{row, column, container, text}};
 
 pub struct Company{
     name: String, 
@@ -14,7 +14,7 @@ pub enum Screen{
 pub enum Message{
     ScreenMessage,
     InputChanged,
-    ButtonPressed
+    ButtonPressed,
 }
 
 pub struct WarehouseApp{
@@ -29,16 +29,27 @@ impl Default for WarehouseApp{
         }
     }
 } 
+
 impl WarehouseApp{
     fn title(&self) -> String{
-        let comp_title = self.sel_company.name;
+        let comp_title = &self.sel_company.name;
         format!("Simple!Warehouse: {}",comp_title)
+    }
 
-    fn update(&mut self, event: Message) {
+    fn update(&mut self, event: Message) -> Task<Message> {
         match event{
-            Message::ScreenMessage => println!("ScreenMessage"),
-            Message::InputChanged => println!("InputChanged"),
-            Message::ButtonPressed => println!("ButtonPressed"),
+            Message::ScreenMessage => {
+                println!("ScreenMessage");
+                Task::none()
+            }
+            Message::InputChanged => {
+                println!("InputChanged");
+                Task::none()
+            }
+            Message::ButtonPressed => {
+                println!("ButtonPressed");
+                Task::none()
+            } 
 
         }
     }
@@ -57,4 +68,8 @@ fn main() -> iced::Result {
         .default_font(iced::Font::MONOSPACE)
         .centered()
         .run()
+}
+
+async fn query_mongo() -> Result<(), String>{
+    Ok(())
 }
