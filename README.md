@@ -8,8 +8,10 @@ The intention of this project is to turn the management of a warehouse efficient
 
 ---
 
-estou estudando agora sobre async: https://doc.rust-lang.org/book/ch17-01-futures-and-syntax.html?highlight=async#futures-and-the-async-syntax
+---
 
-[] etender async
-[] usar mongodb
-[] criar interface
+[x] fazer iced funcionar(tela teste, text e button com funcao)
+[x] fazer mongodb funcionar(post teste)
+[] patten matching feito
+[] crud feito
+[] interface feita

@@ -1,7 +1,16 @@
 use iced::{Element, executor, Task, widget::{row, column, container, text, button}};
+use serde::{Serialize, Deserialize};
 
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Company{
+    idd: String,
     name: String, 
+    cnpj: String,
+}
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Item{
+    idd: String,
+    itype: String,
 }
 
 pub enum Screen{
@@ -25,7 +34,7 @@ pub struct WarehouseApp{
 impl Default for WarehouseApp{
     fn default() -> Self{
         Self{
-            sel_company: Company{name:"unselected".to_string()},
+            sel_company: Company::default(),
             sel_screen: Screen::HubScreen,
         }
     }
@@ -70,7 +79,6 @@ impl WarehouseApp{
             ]
         ];
         container(teste).into()
-
     }
 }
 fn main() -> iced::Result {
@@ -81,7 +89,7 @@ fn main() -> iced::Result {
 }
 
 async fn query_mongo() -> Result<(), String>{
-    use mongodb::{bson::doc, options::ClientOptions, Client};
+    use mongodb::{bson::{doc, to_document, Document}, options::ClientOptions, Client};
     use std::env;
 
     dotenv::dotenv().ok();
@@ -91,6 +99,7 @@ async fn query_mongo() -> Result<(), String>{
 
     let db = client.database("simple_warehouse");
     let col = db.collection::<mongodb::bson::Document>("empresa");
+
     col.insert_one(doc! {"testing": "Testing app"})
         .await
         .map_err(|e| e.to_string())?;
