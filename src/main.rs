@@ -1,11 +1,32 @@
 use iced::{Element, executor, Task, widget::{row, column, container, text, button}};
 use serde::{Serialize, Deserialize};
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize,Deserialize)]
+pub enum CompanyType{
+    None,
+    Me,
+    Customer,
+    Supplier
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Company{
     idd: String,
     name: String, 
+    itype: CompanyType,
     cnpj: String,
+}
+
+impl Default for Company{
+    fn default() -> Self{
+        Self{
+            idd: String::new(),
+            name: String::new(),
+            itype: CompanyType::None,
+            cnpj: String::new()
+        }
+    }
+    
 }
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Item{

@@ -1,4 +1,4 @@
-Simple!Warehouse
+# **Simple!Warehouse**
 -
 *intro*
 
@@ -16,23 +16,33 @@ The intention of this project is to turn the management of a warehouse efficient
 ---
 *structs base*
 
-Company
+[x] Company (ainda nao coloquei que e utilizado objectid)
     -id(objectid) - id dentro do mongodb
+    -name(String)
     -itype(enum::x) - enum(CompanyTypes)
     -cnpj(String)
 
-Product
+[ ] Product
     -id(objectid) - id dentro do mongodb
     -itype(enum::x) - enum(ProductTypes)
     -composition(Vec!) - Vec(products)
     -stock(int) - int
     -ownerid(objectid) - id dentro do mongodb
 
-Movimentation
+[ ] Movimentation
     -id(objectid) - id dentro do mongodb
     -date_movimentation - datetime
     -date_made - datetime
     -ownerid - id dentro do mongodb
+
+
+*enum base*
+
+[x] enum(CompanyTypes)
+    -None,
+    -Me,
+    -Customer,
+    -Supplier,
 
 ---
 *checklist*
